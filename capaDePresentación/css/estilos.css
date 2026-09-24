@@ -1,0 +1,172 @@
+
+
+/* ---------- BASE ---------- */
+body {
+    overflow-x: hidden;
+}
+
+/* ---------- HEADER ---------- */
+header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #2b6cb0;
+    color: white;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-info h3 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #6ddcdc;
+}
+
+/* ---------- FOOTER ---------- */
+.social-icons-footer a {
+    transition: color 0.3s;
+}
+
+.social-icons-footer a:hover {
+    color: #6ddcdc;
+}
+
+/* ---------- CARRUSEL ---------- */
+.carousel-item {
+    height: 450px;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item {
+        height: 200px;
+    }
+}
+
+/* ---------- BARRA LATERAL DE ESPECIALIDADES ---------- */
+.especialidad-link {
+    display: block;
+    color: #2d3748;
+    padding: 5px 0;
+    cursor: pointer;
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+.especialidad-link:hover,
+.especialidad-link.active {
+    color: #2b6cb0;
+    padding-left: 8px;
+    font-weight: bold;
+}
+
+/* ---------- NOTIFICACIONES ---------- */
+.notificaciones-contenedor {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+    max-width: 350px;
+}
+
+.notificacion {
+    padding: 14px 20px;
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.notificacion-exito {
+    background-color: #38a169;
+}
+
+.notificacion-error {
+    background-color: #e53e3e;
+}
+
+/* ---------- ERRORES DE VALIDACIÓN ---------- */
+.error {
+    display: block;
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    min-height: 1.2rem;
+}
+/* ---------- CARDS DE MÉDICOS ---------- */
+.medico-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.medico-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.medico-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.medico-card .card-title {
+    color: #2b6cb0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.especialidad-badge {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+}
+/* ---------- FORMULARIO DE REGISTRO ---------- */
+#formRegistro {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+#formRegistro .form-label {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+/* Campos con estado válido */
+#formRegistro .form-control.is-valid,
+#formRegistro .form-select.is-valid {
+    border-color: #38a169;
+    background-image: none;
+}
+
+/* Campos con estado inválido */
+#formRegistro .form-control.is-invalid,
+#formRegistro .form-select.is-invalid {
+    border-color: #dc3545;
+    background-image: none;
+}
