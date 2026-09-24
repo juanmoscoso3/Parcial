@@ -1,0 +1,29 @@
+/* Los estilos del carrusel ya están en styles.css (globales) */
+/* Aquí solo agregamos estilos específicos del componente si es necesario */
+
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.carousel-caption h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-caption .lead {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .carousel-caption h3 {
+    font-size: 1.1rem;
+  }
+
+  .carousel-caption .lead {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+}

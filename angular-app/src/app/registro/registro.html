@@ -1,0 +1,225 @@
+<section id="seccion3" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4">
+      <i class="fas fa-user-plus text-primary"></i> Registro de Nuevos Usuarios
+    </h2>
+    <p class="text-center lead mb-4">
+      Regístrate para agendar tu primera cita con un 30% de descuento
+    </p>
+<div class="row justify-content-center mb-4" *ngIf="medicoSeleccionado">
+      <div class="col-lg-8">
+        <div class="alert alert-success d-flex align-items-center">
+          <i class="fas fa-user-md fa-2x me-3"></i>
+          <div>
+            <strong>Vas a agendar cita con:</strong>
+            Dr. {{ medicoSeleccionado.nombre }} - {{ medicoSeleccionado.especialidad }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <form id="formRegistro" class="bg-white p-4 rounded shadow-sm" (ngSubmit)="registrar()" novalidate>
+
+          <!-- TIPO Y NÚMERO DE IDENTIFICACIÓN -->
+          <div class="row">
+            <div class="col-md-5 mb-3">
+              <label for="tipoIdentificacion" class="form-label">
+                Tipo de Identificación <span class="text-danger">*</span>
+              </label>
+              <select 
+                id="tipoIdentificacion" 
+                class="form-select"
+                [class.is-invalid]="errores.tipoId !== ''"
+                [(ngModel)]="registro.tipoId"
+                name="tipoId"
+                (blur)="validarTipoId()"
+                (change)="validarTipoId()">
+                <option value="">Seleccione un tipo</option>
+                <option value="cc">Cédula de Ciudadanía</option>
+                <option value="ti">Tarjeta de Identidad</option>
+                <option value="ce">Cédula de Extranjería</option>
+                <option value="pas">Pasaporte</option>
+              </select>
+              <label class="text-danger form-text" *ngIf="errores.tipoId">{{ errores.tipoId }}</label>
+            </div>
+
+            <div class="col-md-7 mb-3">
+              <label for="numeroIdentificacion" class="form-label">
+                Número de Identificación <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="numeroIdentificacion" 
+                class="form-control"
+                [class.is-invalid]="errores.numeroId !== ''"
+                [(ngModel)]="registro.numeroId"
+                name="numeroId"
+                placeholder="Ej: 1061234567"
+                (blur)="validarNumeroId()"
+                (keypress)="soloNumeros($event)">
+              <label class="text-danger form-text" *ngIf="errores.numeroId">{{ errores.numeroId }}</label>
+            </div>
+          </div>
+
+          <!-- NOMBRES Y APELLIDOS -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="nombresUsuario" class="form-label">
+                Nombres <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="nombresUsuario" 
+                class="form-control"
+                [class.is-invalid]="errores.nombres !== ''"
+                [(ngModel)]="registro.nombres"
+                name="nombres"
+                placeholder="Ej: Juan Carlos"
+                (blur)="validarNombres()">
+              <label class="text-danger form-text" *ngIf="errores.nombres">{{ errores.nombres }}</label>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="apellidosUsuario" class="form-label">
+                Apellidos <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="apellidosUsuario" 
+                class="form-control"
+                [class.is-invalid]="errores.apellidos !== ''"
+                [(ngModel)]="registro.apellidos"
+                name="apellidos"
+                placeholder="Ej: Pérez Gómez"
+                (blur)="validarApellidos()">
+              <label class="text-danger form-text" *ngIf="errores.apellidos">{{ errores.apellidos }}</label>
+            </div>
+          </div>
+
+          <!-- CORREO ELECTRÓNICO -->
+          <div class="mb-3">
+            <label for="correoElectronico" class="form-label">
+              Correo Electrónico <span class="text-danger">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="correoElectronico" 
+              class="form-control"
+              [class.is-invalid]="errores.correo !== ''"
+              [(ngModel)]="registro.correo"
+              name="correo"
+              placeholder="correo@ejemplo.com"
+              (blur)="validarCorreo()">
+            <label class="text-danger form-text" *ngIf="errores.correo">{{ errores.correo }}</label>
+            <small class="form-text text-muted">
+              Este será el dato que confirma tu registro.
+            </small>
+          </div>
+
+          <!-- TELÉFONO -->
+          <div class="mb-3">
+            <label for="telefonoUsuario" class="form-label">
+              Teléfono <span class="text-danger">*</span>
+            </label>
+            <input 
+              type="tel" 
+              id="telefonoUsuario" 
+              class="form-control"
+              [class.is-invalid]="errores.telefono !== ''"
+              [(ngModel)]="registro.telefono"
+              name="telefono"
+              placeholder="Ej: 3001234567"
+              (blur)="validarTelefono()"
+              (keypress)="soloNumeros($event)">
+            <label class="text-danger form-text" *ngIf="errores.telefono">{{ errores.telefono }}</label>
+          </div>
+
+          <!-- GÉNERO (radio buttons) -->
+          <fieldset class="mb-3">
+            <legend class="form-label">
+              Género <span class="text-danger">*</span>
+            </legend>
+            <div class="form-check form-check-inline">
+              <input 
+                class="form-check-input" 
+                type="radio" 
+                id="generoFemenino"
+                value="femenino"
+                [(ngModel)]="registro.genero"
+                name="genero"
+                (change)="validarGenero()">
+              <label class="form-check-label" for="generoFemenino">Femenino</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input 
+                class="form-check-input" 
+                type="radio" 
+                id="generoMasculino"
+                value="masculino"
+                [(ngModel)]="registro.genero"
+                name="genero"
+                (change)="validarGenero()">
+              <label class="form-check-label" for="generoMasculino">Masculino</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input 
+                class="form-check-input" 
+                type="radio" 
+                id="generoOtro"
+                value="otro"
+                [(ngModel)]="registro.genero"
+                name="genero"
+                (change)="validarGenero()">
+              <label class="form-check-label" for="generoOtro">Otro</label>
+            </div>
+            <label class="text-danger form-text d-block" *ngIf="errores.genero">{{ errores.genero }}</label>
+          </fieldset>
+
+          <!-- FECHA DE NACIMIENTO -->
+          <div class="mb-3">
+            <label for="fechaNacimiento" class="form-label">
+              Fecha de Nacimiento <span class="text-danger">*</span>
+            </label>
+            <input 
+              type="date" 
+              id="fechaNacimiento" 
+              class="form-control"
+              [class.is-invalid]="errores.fechaNacimiento !== ''"
+              [(ngModel)]="registro.fechaNacimiento"
+              name="fechaNacimiento"
+              (blur)="validarFechaNacimiento()"
+              (change)="validarFechaNacimiento()">
+            <label class="text-danger form-text" *ngIf="errores.fechaNacimiento">{{ errores.fechaNacimiento }}</label>
+          </div>
+
+          <!-- TÉRMINOS Y CONDICIONES -->
+          <div class="mb-3 form-check">
+            <input 
+              class="form-check-input" 
+              type="checkbox" 
+              id="aceptaTerminos"
+              [(ngModel)]="registro.aceptaTerminos"
+              name="aceptaTerminos"
+              (change)="validarTerminos()">
+            <label class="form-check-label" for="aceptaTerminos">
+              Acepto los términos y condiciones <span class="text-danger">*</span>
+            </label>
+            <label class="text-danger form-text d-block" *ngIf="errores.aceptaTerminos">{{ errores.aceptaTerminos }}</label>
+          </div>
+
+          <!-- BOTONES -->
+          <div class="d-flex justify-content-start mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="fas fa-user-plus"></i> Registrar
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-lg ms-2" (click)="limpiarFormulario()">
+              <i class="fas fa-eraser"></i> Limpiar
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

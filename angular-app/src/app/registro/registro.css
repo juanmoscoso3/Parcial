@@ -1,0 +1,19 @@
+/* Los estilos base están en styles.css (globales) */
+
+#formRegistro {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+#formRegistro .form-label {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+#formRegistro .form-control.is-invalid,
+#formRegistro .form-select.is-invalid {
+  border-color: #dc3545;
+  background-image: none;
+}

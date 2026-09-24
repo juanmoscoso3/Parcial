@@ -1,0 +1,29 @@
+footer {
+  background-color: #2211a5d7;
+  padding: 15px;
+  color: white;
+}
+
+footer p {
+  margin: 2px 0;
+}
+
+.btn-floating {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.btn-floating:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+.btn-floating i {
+  font-size: 1.2rem;
+}

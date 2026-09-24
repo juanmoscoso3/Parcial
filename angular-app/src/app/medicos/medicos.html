@@ -1,0 +1,99 @@
+<section id="seccion2" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">
+      <i class="fas fa-user-md text-primary"></i> Nuestros Médicos
+    </h2>
+    <p class="text-center lead mb-4">Conoce a nuestro equipo de especialistas</p>
+
+    <div class="row">
+      
+      <!-- BARRA LATERAL DE ESPECIALIDADES              -->
+     
+      <aside class="col-12 col-sm-2 col-md-4 mb-4 mb-md-0">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">
+              <i class="fas fa-list"></i> Especialidades
+            </h5>
+          </div>
+          <ul class="list-group list-group-flush" id="listaEspecialidades">
+            <li 
+              *ngFor="let esp of especialidades" 
+              class="list-group-item">
+              <a 
+                class="text-decoration-none especialidad-link"
+                [class.active]="especialidadSeleccionada === esp.id"
+                (click)="seleccionarEspecialidad(esp.id)"
+                style="cursor: pointer;">
+                <i [class]="esp.icono + ' text-' + esp.color"></i> 
+                {{ esp.nombre }}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Descripción de la especialidad seleccionada -->
+        <div 
+          *ngIf="especialidadActual" 
+          class="card shadow-sm mt-3 border-info">
+          <div class="card-header bg-info text-white">
+            <h6 class="mb-0">
+              <i class="fas fa-info-circle"></i> {{ especialidadActual.nombre }}
+            </h6>
+          </div>
+          <div class="card-body">
+            <p class="card-text small mb-0">{{ especialidadActual.descripcion }}</p>
+          </div>
+        </div>
+      </aside>
+
+      
+      <!-- GRID DE MÉDICOS                              -->
+     
+      <main class="col-12 col-sm-10 col-md-8">
+        <div class="row g-3">
+          <div 
+            *ngFor="let medico of medicosFiltrados" 
+            class="col-12 col-sm-6 col-md-4 col-lg-3 medico-item">
+            
+            <div class="card medico-card shadow-sm border h-100">
+              <img 
+                [src]="medico.imagen" 
+                class="card-img-top" 
+                [alt]="'Dr. ' + medico.nombres + ' ' + medico.apellidos">
+              
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title mb-1">Dr. {{ medico.nombres }} {{ medico.apellidos }}</h5>
+                
+                <p class="card-text small mb-2">
+                  <span class="badge bg-primary especialidad-badge">
+                    <i class="fas fa-stethoscope"></i> {{ medico.subEspecialidad }}
+                  </span>
+                </p>
+                
+                <p class="card-text small flex-grow-1">
+                  {{ medico.motivacion }}
+                </p>
+                
+                <button 
+                  class="btn btn-primary btn-sm mt-2"
+                  (click)="agendarCita(medico)">
+                  <i class="fas fa-calendar-plus"></i> Agendar Cita
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mensaje si no hay médicos -->
+          <div 
+            *ngIf="medicosFiltrados.length === 0" 
+            class="col-12">
+            <div class="alert alert-info text-center">
+              <i class="fas fa-info-circle"></i> No hay médicos disponibles para esta especialidad.
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
